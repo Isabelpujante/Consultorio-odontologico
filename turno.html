@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedir Turno</title>
+    <link rel="stylesheet" href="consul.css">
+</head>
+<body>
+    <header>
+        <h1>RESERVAR CITA</h1>
+        <nav><a href="index.html" class="btn">Inicio</a></nav>
+    </header>
+
+    <div class="container">
+        <div id="caja-formulario">
+            <form id="formTurno">
+                <input type="text" id="nombre" placeholder="Nombre" required>
+                <input type="text" id="apellido" placeholder="Apellido" required>
+                <input type="number" id="dni" placeholder="DNI" required>
+                
+                <label>Obra Social:</label>
+                <select id="os">
+                    <option value="Particular">Particular</option>
+                    <option value="OSDE">OSDE</option>
+                    <option value="Swiss Medical">Swiss Medical</option>
+                </select>
+                
+                <input type="email" id="mail" placeholder="Mail" required>
+                <input type="tel" id="tel" placeholder="Teléfono" required>
+                <input type="number" id="edad" placeholder="Edad" required>
+                
+                <label>Servicio:</label>
+                <select id="serv">
+                    <option value="Limpieza">Limpieza</option>
+                    <option value="Ortodoncia">Ortodoncia</option>
+                    <option value="Blanqueamiento">Blanqueamiento</option>
+                    <option value="Remocion Dental">Remocion Dental</option>
+                </select>
+                
+                <label>Profesional:</label>
+                <select id="prof">
+                    <option value="Dr. Pujante">Dr. Pujante</option>
+                    <option value="Dra. García">Dra. Gonella</option>
+                    <option value="Dra. Ingelmo">Dra. Ingelmo</option>
+                </select>
+                
+                <label>Fecha y Hora:</label>
+                <input type="date" id="fecha" required>
+                <input type="time" id="hora" required>
+                
+                <textarea id="extra" placeholder="Mensaje adicional..."></textarea>
+                
+                <button type="button" class="btn" onclick="enviarTurno()">SOLICITAR</button>
+            </form>
+        </div>
+
+        <div id="confirmacion" style="display: none;">
+            <h2 style="color: green;">✔ Su solicitud fue enviada</h2>
+            <div id="datos-resumen" style="text-align: left; padding: 20px; line-height: 1.8; background: #f9f9f9; border-radius: 10px; margin: 20px 0; border: 1px solid #ddd;">
+            </div>
+            <a href="index.html" class="btn">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script>
+        function enviarTurno() {
+            var nom = document.getElementById('nombre').value;
+            var ape = document.getElementById('apellido').value;
+            var fec = document.getElementById('fecha').value;
+            var hor = document.getElementById('hora').value;
+            var ser = document.getElementById('serv').value;
+            var pro = document.getElementById('prof').value;
+
+            if(nom === "" || ape === "" || fec === "") {
+                alert("Por favor, completa los campos obligatorios");
+                return;
+            }
+
+            var resumenHTML = "<p><strong>Paciente:</strong> " + nom + " " + ape + "</p>" +
+                              "<p><strong>Cita:</strong> " + fec + " a las " + hor + " hs</p>" +
+                              "<p><strong>Servicio:</strong> " + ser + "</p>" +
+                              "<p><strong>Profesional:</strong> " + pro + "</p>" +
+                              "<p><strong>Ubicación:</strong> La rioja 75, Neuquen capital</p>" + 
+                              "<br>" +
+                              "<a href='https://www.google.com/maps?q=La+Rioja+75,+Neuquen' target='_blank'>Como llegar</a>";
+
+            document.getElementById('datos-resumen').innerHTML = resumenHTML;
+            document.getElementById('caja-formulario').style.display = 'none';
+            document.getElementById('confirmacion').style.display = 'block';
+
+            window.scrollTo(0, 0);
+        }
+    </script>
+    </body>
+    </html>
