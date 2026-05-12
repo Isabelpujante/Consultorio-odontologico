@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Pedir Turno</title>
     <link rel="stylesheet" href="consul.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -61,35 +62,5 @@
             <a href="index.html" class="btn">Volver al Inicio</a>
         </div>
     </div>
-
-    <script>
-        function enviarTurno() {
-            var nom = document.getElementById('nombre').value;
-            var ape = document.getElementById('apellido').value;
-            var fec = document.getElementById('fecha').value;
-            var hor = document.getElementById('hora').value;
-            var ser = document.getElementById('serv').value;
-            var pro = document.getElementById('prof').value;
-
-            if(nom === "" || ape === "" || fec === "") {
-                alert("Por favor, completa los campos obligatorios");
-                return;
-            }
-
-            var resumenHTML = "<p><strong>Paciente:</strong> " + nom + " " + ape + "</p>" +
-                              "<p><strong>Cita:</strong> " + fec + " a las " + hor + " hs</p>" +
-                              "<p><strong>Servicio:</strong> " + ser + "</p>" +
-                              "<p><strong>Profesional:</strong> " + pro + "</p>" +
-                              "<p><strong>Ubicación:</strong> La rioja 75, Neuquen capital</p>" + 
-                              "<br>" +
-                              "<a href='https://www.google.com/maps?q=La+Rioja+75,+Neuquen' target='_blank'>Como llegar</a>";
-
-            document.getElementById('datos-resumen').innerHTML = resumenHTML;
-            document.getElementById('caja-formulario').style.display = 'none';
-            document.getElementById('confirmacion').style.display = 'block';
-
-            window.scrollTo(0, 0);
-        }
-    </script>
     </body>
     </html>
